@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
     //  this.http.get('https://localhost:5001/api/user').subscribe(data=>{this.users=data;console.log(data)},error=>{console.log(error)});
   }
   setCurrentUser() {
-    const currentUser =(localStorage.getItem('user') ); 
+    const currentUser =localStorage.getItem('user') ; 
     const user: User = JSON.parse(currentUser !=null? currentUser :'{}');
     this.accountService.serCurrentUser(user);
   }
