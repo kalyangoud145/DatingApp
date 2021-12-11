@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavComponent } from './components/nav/nav.component';
@@ -13,7 +13,12 @@ import { MemberDetailComponent } from './components/member/member-detail/member-
 import { ListsComponent } from './components/lists/lists.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { AppRoutingModule } from './app-routing.module'
-
+import { ToastrModule } from 'ngx-toastr';
+import { SharedModule } from './_modules/shared.module';
+import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
+import { ErrorInterceptor } from './error.interceptor';
+import { NotFoundComponent } from './errors/not-found/not-found.component';
+import { ServerErrorComponent } from './errors/server-error/server-error.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,13 +28,16 @@ import { AppRoutingModule } from './app-routing.module'
     MemberListComponent,
     MemberDetailComponent,
     ListsComponent,
-    MessagesComponent
+    MessagesComponent,
+    TestErrorsComponent,
+    NotFoundComponent,
+    ServerErrorComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule, BrowserAnimationsModule,
-    FormsModule,BsDropdownModule.forRoot(), AppRoutingModule,
+    BrowserModule, HttpClientModule, BrowserAnimationsModule,AppRoutingModule,
+    FormsModule,SharedModule
   ],
-  providers: [],
+  providers: [{provide:HTTP_INTERCEPTORS,useClass:ErrorInterceptor,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
