@@ -3,12 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { ListsComponent } from './components/lists/lists.component';
 import { MemberDetailComponent } from './components/member/member-detail/member-detail.component';
+import { MemberEditComponent } from './components/member/member-edit/member-edit.component';
 import { MemberListComponent } from './components/member/member-list/member-list.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
 import { AuthGuard } from './_guards/auth.guard';
+import { PreventUnsavedChangesGuard } from './_guards/prevent-unsaved-changes.guard';
 
 
 const routes: Routes = [
@@ -17,14 +19,15 @@ const routes: Routes = [
     path: '',
     runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
-    children: [{ path: 'member', component: MemberListComponent, canActivate: [AuthGuard] },
-    { path: 'member/:username', component: MemberDetailComponent },
+    children: [{ path: 'member', component: MemberListComponent },
+    { path: 'members/:username', component: MemberDetailComponent },
+    { path: 'member/edit', component: MemberEditComponent,canDeactivate:[PreventUnsavedChangesGuard] },
     { path: 'lists', component: ListsComponent },
     { path: 'messages', component: MessagesComponent }]
   },
-  {path:'errors',component:TestErrorsComponent},
-  {path:'not-found',component:NotFoundComponent},
-  {path:'server-error',component:ServerErrorComponent},
+  { path: 'errors', component: TestErrorsComponent },
+  { path: 'not-found', component: NotFoundComponent },
+  { path: 'server-error', component: ServerErrorComponent },
   { path: '**', component: NotFoundComponent, pathMatch: 'full' }
 ];
 
