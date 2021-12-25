@@ -6,7 +6,7 @@ import {TabsModule} from 'ngx-bootstrap/tabs';
 import {NgxGalleryModule} from '@kolkov/ngx-gallery'
 import {NgxSpinnerModule } from 'ngx-spinner';
 import { FileUploadModule } from 'ng2-file-upload';
-
+import {BsDatepickerModule} from 'ngx-bootstrap/datepicker'
 @NgModule({
   declarations: [],
   imports: [
@@ -14,9 +14,11 @@ import { FileUploadModule } from 'ng2-file-upload';
      BsDropdownModule.forRoot(), 
      ToastrModule.
       forRoot({ positionClass: 'toast-bottom-right' }),
-      TabsModule.forRoot(),NgxGalleryModule,NgxSpinnerModule,FileUploadModule
+      TabsModule.forRoot(),NgxGalleryModule,
+      NgxSpinnerModule,FileUploadModule,
+      BsDatepickerModule.forRoot()
   ],
   exports: [BsDropdownModule,
-     ToastrModule,TabsModule,NgxGalleryModule,FileUploadModule,NgxSpinnerModule]
+     ToastrModule,TabsModule,NgxGalleryModule,FileUploadModule,NgxSpinnerModule,BsDatepickerModule]
 })
 export class SharedModule { }

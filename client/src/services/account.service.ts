@@ -37,6 +37,7 @@ export class AccountService {
     this.currentUserSource.next(user);
   }
   register(model: any) {
+    console.log(model);
     return this.http.post<User>(this.baseUrl + 'account/register', model)
       .pipe(map((user: User) => {
         if (user) {

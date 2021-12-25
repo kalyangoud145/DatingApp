@@ -1,5 +1,4 @@
 import { HttpClient } from '@angular/common/http';
-import { CursorError } from '@angular/compiler/src/ml_parser/lexer';
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from 'src/services/account.service';
 import { User } from './_models/user';
