@@ -44,7 +44,8 @@ namespace API.Controllers
             user.PasswordSalt = hmac.Key;
             await _context.Users.AddAsync(user);
             await _context.SaveChangesAsync();
-            return new UserDto { UserName = user.UserName, Token = _tokenService.CreateToken(user), KnownAs = user.KnownAs };
+            return new UserDto { UserName = user.UserName, Token = _tokenService.CreateToken(user), 
+                KnownAs = user.KnownAs ,Gender = user.Gender};
         }
         [HttpPost("login")]
         public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
@@ -58,7 +59,9 @@ namespace API.Controllers
             {
                 if (computedHash[i] != user.PasswordHash[i]) return Unauthorized("Invalid password");
             }
-            return new UserDto { UserName = user.UserName, Token = _tokenService.CreateToken(user), PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url, KnownAs = user.KnownAs };
+            return new UserDto { UserName = user.UserName, Token = _tokenService.CreateToken(user),
+                PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url,
+                KnownAs = user.KnownAs,  Gender = user.Gender};
         }
         private async Task<bool> UserExists(string username)
         {
