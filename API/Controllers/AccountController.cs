@@ -15,9 +15,8 @@ using System.Threading.Tasks;
 
 namespace API.Controllers
 {
-    [ApiController]
     [Route("api/account")]
-    public class AccountController : ControllerBase
+    public class AccountController : BaseApiController
     {
         public DataContext _context;
         private readonly ITokenService _tokenService;

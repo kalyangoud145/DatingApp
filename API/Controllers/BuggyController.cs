@@ -11,8 +11,7 @@ using System.Threading.Tasks;
 namespace API.Controllers
 {
     [Route("api/buggy")]
-    [ApiController]
-    public class BuggyController : ControllerBase
+    public class BuggyController : BaseApiController
     {
         private readonly DataContext _context;
         public BuggyController(DataContext context)

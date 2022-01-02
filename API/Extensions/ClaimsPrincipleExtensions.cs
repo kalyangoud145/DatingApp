@@ -14,6 +14,7 @@ namespace API.Extensions
         }
         public static int GetUserId(this ClaimsPrincipal user)
         {
+            Console.WriteLine(user.FindFirst(ClaimTypes.NameIdentifier)?.Value);
             return int.Parse(user.FindFirst(ClaimTypes.NameIdentifier)?.Value);
         }
     }

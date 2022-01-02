@@ -19,8 +19,7 @@ namespace API.Controllers
 {
     [Authorize]
     [Route("api/user")]
-    [ApiController]
-    public class UserController : ControllerBase
+    public class UserController : BaseApiController
     {
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
